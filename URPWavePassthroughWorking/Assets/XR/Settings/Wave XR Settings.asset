@@ -52,7 +52,7 @@ MonoBehaviour:
   enableAutoFallbackForMultiLayer: 1
   allowSpectatorCamera: 0
   EnableTracker: 0
-  EnableNaturalHand: 0
+  EnableNaturalHand: 1
   EnableElectronicHand: 0
   EnableEyeExpression: 0
   EnableEyeTracking: 0

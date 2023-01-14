@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/URP.unity
     guid: 433d0fd9ceb3fae488cc92127c91dfd3
   - enabled: 0
-    path: Assets/OurWorkingScene.unity
-    guid: ee87f0cd91fd14339a190d58dcff1a49
+    path: Assets/Wave/Essence/Hand/Model/5.1.0-r.15/Demo/NaturalHand.unity
+    guid: 5a38ad072c92c8f4ab668c159dadbbed
   m_configObjects:
     com.htc.upm.wave.xrsdk.xrsettings: {fileID: 11400000, guid: d31c749f4382bda40b64b188482385a8,
       type: 2}
