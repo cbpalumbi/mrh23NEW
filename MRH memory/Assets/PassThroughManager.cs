@@ -17,11 +17,14 @@ public class PassThroughManager : MonoBehaviour
     
     void ShowPassthroughOverlay()
     {
+        //Interop.WVR_ShowPassthroughOverlay(true); 
         Interop.WVR_ShowPassthroughUnderlay(true); //Show Passthrough Underlay
+        Debug.Log("triggering passthrough");
     }
 
     void HidePassthroughOverlay()
     {
+        //Interop.WVR_ShowPassthroughOverlay(false); 
         Interop.WVR_ShowPassthroughUnderlay(false); //Hide Passthrough Underlay
     }
 }
