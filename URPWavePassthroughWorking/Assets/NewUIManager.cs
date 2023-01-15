@@ -31,11 +31,11 @@ public class NewUIManager : MonoBehaviour
     void Update() {
         
         if(Interop.WVR_GetInputTouchState(WVR_DeviceType.WVR_DeviceType_Controller_Right, WVR_InputId.WVR_InputId_Alias1_A)) {
-            ReShowInstructions();
+            ReShowWelcomeScreen();
         }
 
         if(Interop.WVR_GetInputTouchState(WVR_DeviceType.WVR_DeviceType_Controller_Left, WVR_InputId.WVR_InputId_Alias1_A)) {
-            ReShowInstructions();
+            ReShowWelcomeScreen();
         }
 
         if (Input.GetKey(KeyCode.M)) {
@@ -66,12 +66,6 @@ public class NewUIManager : MonoBehaviour
         gestureText.text = heldGesture.ToString();
     }
 
-    // void Update() {
-    //     if (Input.GetKey(KeyCode.M)) {
-    //         OnContinueButtonClicked();
-    //     }
-    // }
-
     public void OnContinueButtonClicked() {
         startScreen.SetActive(false);
         instructions.SetActive(true);
@@ -82,6 +76,12 @@ public class NewUIManager : MonoBehaviour
     }
 
     void ReShowInstructions() {
+        startScreen.SetActive(false);
         instructions.SetActive(true);
+    }
+
+    void ReShowWelcomeScreen() {
+        instructions.SetActive(false);
+        startScreen.SetActive(true);
     }
 }
