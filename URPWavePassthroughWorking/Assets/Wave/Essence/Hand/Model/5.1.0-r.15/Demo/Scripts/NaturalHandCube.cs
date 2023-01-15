@@ -141,14 +141,6 @@ namespace Wave.Essence.Hand.Model.Demo
 				GetComponent<MeshRenderer>().material = memoryManager.blue;
 			} 
 
-			// if (eventData.enterEventCamera != null)
-			// {
-			// 	m_Position = eventData.enterEventCamera.ScreenToWorldPoint(new Vector3(eventData.position.x, eventData.position.y, fDistanceInMeter));
-			// 	DEBUG("OnPointerClick() position: " + m_Position);
-			// }
-
-			// StopCoroutine("TrackPointer");
-			//TeleportRandomly();
 		}
 
 		public void OnSubmit(BaseEventData eventData)

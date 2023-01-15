@@ -35,15 +35,15 @@ public class DebugManager : MonoBehaviour
     }
 
     public void SendTestMsg1OnButtonClick() {
-        wsclient.SendMemoryMessage(memoryText1.text);
+        //wsclient.SendMemoryMessage(memoryText1.text);
     }
 
     public void SendTestMsg2OnButtonClick() {
-        wsclient.SendMemoryMessage(memoryText2.text);
+        //wsclient.SendMemoryMessage(memoryText2.text);
     }
 
     public void SendTestMsg3OnButtonClick() {
-        wsclient.SendMemoryMessage(memoryText3.text);
+        //wsclient.SendMemoryMessage(memoryText3.text);
     }
 
 
