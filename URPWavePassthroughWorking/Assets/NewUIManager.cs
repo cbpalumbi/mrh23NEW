@@ -14,12 +14,19 @@ public class NewUIManager : MonoBehaviour
     public CustomGestureProvider gestureProvider;
     //public GameObject cube;
     public TextMeshProUGUI gestureText;
+    [HideInInspector]
+    GestureType heldGesture;
+    GestureType holdingGesture;
+    //bool isRunningCoroutine = false;
 
     void Start() {
         startScreen.SetActive(true);
         instructions.SetActive(false);
         gestureText.text = "None";
+        holdingGesture = GestureType.Unknown; //the one you have now but haven't necesarily held for long enough
+        heldGesture = GestureType.Unknown; // the previous gesture held for long enough
     }
+
 
     void Update() {
         
@@ -35,20 +42,28 @@ public class NewUIManager : MonoBehaviour
             ReShowInstructions();
         }
 
-        // if (Interop.WVR_GetHandGestureData() == GestureType.Fist 
-        //     ||  Interop.WVR_GetHandGestureData() == GestureType.Fist) {
-        //     ReShowInstructions();
-        // }
-
         if (gestureProvider != null) {
-            if (gestureProvider.GetHandGesture(false) == GestureType.Fist) {
-                gestureText.text = "Fist";
+
+            if (gestureProvider.GetHandGesture(false) != holdingGesture) {
+                StopCoroutine(ChangeGestureIfHeldForSeconds());
+                holdingGesture = gestureProvider.GetHandGesture(false);
+                StartCoroutine(ChangeGestureIfHeldForSeconds());
             }
-            if (gestureProvider.GetHandGesture(false) == GestureType.Five) {
-                gestureText.text = "Five";
-            }
+            
+        }
+
+        if (heldGesture == GestureType.Like && !instructions.activeInHierarchy) {
+            ReShowInstructions();
         }
         
+    }
+
+    IEnumerator ChangeGestureIfHeldForSeconds() {
+        for (int i = 0; i < 10; i++) {
+            yield return new WaitForSeconds(0.1f);
+        }
+        heldGesture = holdingGesture;
+        gestureText.text = heldGesture.ToString();
     }
 
     // void Update() {
