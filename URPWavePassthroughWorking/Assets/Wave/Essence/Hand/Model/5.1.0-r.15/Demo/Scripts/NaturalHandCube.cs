@@ -37,6 +37,7 @@ namespace Wave.Essence.Hand.Model.Demo
 		void Start() {
 			memoryManager = GameObject.Find("MemoryInteractionManager").GetComponent<MemoryInteractionManager>();
 			originalPosition = gameObject.transform.position;
+			GetComponentInChildren<Canvas>().worldCamera = GameObject.Find("Main Camera").GetComponent<Camera>();
 		}
 
 		const string LOG_TAG = "Wave.Essence.Hand.Model.Demo.NaturalHandCube";
@@ -120,11 +121,10 @@ namespace Wave.Essence.Hand.Model.Demo
 		public void OnHover(RaycastEventData eventData)
 		{
 			
-			if (memoryManager.selectedMemory == null) {
-				memoryManager.selectedMemory = this.gameObject;
-				originalPosition = gameObject.transform.position;
-			} 
-
+			// if (memoryManager.selectedMemory == null) {
+			// 	memoryManager.selectedMemory = this.gameObject;
+			// 	originalPosition = gameObject.transform.position;
+			// } 
 
 			
 		}
@@ -135,12 +135,21 @@ namespace Wave.Essence.Hand.Model.Demo
 		private uint cubeColorIndex = 0;
 		public void OnPointerClick(PointerEventData eventData)
 		{
+			
+
+			if (memoryManager.selectedMemory == null) {
+				memoryManager.selectedMemory = this.gameObject;
+				originalPosition = gameObject.transform.position;
+			} 
+
+		}
+
+		public void ReturnToOrigin() {
 			if (memoryManager.selectedMemory == this.gameObject) {
 				memoryManager.selectedMemory = null;
 				gameObject.transform.position = originalPosition;
 				GetComponent<MeshRenderer>().material = memoryManager.blue;
 			} 
-
 		}
 
 		public void OnSubmit(BaseEventData eventData)
