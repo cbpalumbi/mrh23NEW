@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Net.WebSockets;
 using UnityEngine;
 using UnityEngine.UI;
-using EasyButtons;
+// using EasyButtons;
 
 // List<string> optionList = new List<string>
 //             { "AdditionalCardPersonAdressType",
@@ -91,7 +91,7 @@ namespace MemorySculpture {
             }
         }
 
-        [Button]
+        // [Button]
         public void SendData() {
             Task send = Send(message);
         }

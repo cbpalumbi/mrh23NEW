@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using EasyButtons;
+// using EasyButtons;
 
 namespace MemorySculpture {
     public class MemoriesArranger : MonoBehaviour
@@ -35,7 +35,7 @@ namespace MemorySculpture {
             
         }
 
-        [Button]
+        // [Button]
         private void DebugSpawn() {
             foreach (GameObject memory in memoryList) {
                 Destroy(memory);
