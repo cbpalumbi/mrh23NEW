@@ -3,16 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Wave.Native;
+using Wave.Essence.Hand;
+using Wave.Essence.Hand.StaticGesture;
+using TMPro;
 
 public class NewUIManager : MonoBehaviour
 {
     public GameObject startScreen;
     public GameObject instructions;
+    public CustomGestureProvider gestureProvider;
     //public GameObject cube;
+    public TextMeshProUGUI gestureText;
 
     void Start() {
         startScreen.SetActive(true);
         instructions.SetActive(false);
+        gestureText.text = "None";
     }
 
     void Update() {
@@ -27,6 +33,20 @@ public class NewUIManager : MonoBehaviour
 
         if (Input.GetKey(KeyCode.M)) {
             ReShowInstructions();
+        }
+
+        // if (Interop.WVR_GetHandGestureData() == GestureType.Fist 
+        //     ||  Interop.WVR_GetHandGestureData() == GestureType.Fist) {
+        //     ReShowInstructions();
+        // }
+
+        if (gestureProvider != null) {
+            if (gestureProvider.GetHandGesture(false) == GestureType.Fist) {
+                gestureText.text = "Fist";
+            }
+            if (gestureProvider.GetHandGesture(false) == GestureType.Five) {
+                gestureText.text = "Five";
+            }
         }
         
     }
