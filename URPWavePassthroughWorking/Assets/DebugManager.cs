@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using MemorySculpture;
 
 public class DebugManager : MonoBehaviour
 {
@@ -11,10 +12,10 @@ public class DebugManager : MonoBehaviour
     public TextMeshProUGUI memoryText2;
     public TextMeshProUGUI memoryText3;
 
-    WS_Client wsclient;
+    WsClient wsclient;
 
     void Start() {
-        wsclient = GameObject.Find("WebSocketManager").GetComponent<WS_Client>();
+        wsclient = GameObject.Find("WebSocketManager").GetComponent<WsClient>();
         if (wsclient != null) {
             Debug.Log("Found a WS Client");
         } else {

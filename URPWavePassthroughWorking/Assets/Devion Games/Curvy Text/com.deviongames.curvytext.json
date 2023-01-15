@@ -1,0 +1,44 @@
+{
+    "name": "Curvy Text",
+    "id": "com.deviongames.curvytext",
+ 	"assetPath":"Assets/Devion Games/Curvy Text",
+    "version": "1.0.2",
+    "unityVersion": "2019.4.1",
+    "assetStore":"https://assetstore.unity.com/packages/tools/gui/curvy-text-65206",
+    "downloadPath": "",
+    "author": "Konstantin Janson",
+    "email": "support@unitycoding.com",
+    "description": "Allows your text to follow a path.",
+    "documentation": "https://deviongames.com/curvy-text/",
+    "dependencies": [],
+    "changelogs": 
+    [
+        {
+            "version": "1.0.0",
+            "changes": 
+            [
+                "Initial Release"
+            ]
+        },
+		{
+            "version": "1.0.1",
+            "changes": 
+            [
+                "Added editor tools in scene view",
+				"Approximate button to auto construct circle and arc",
+				"Curvy Text extends from UI.Text now",
+				"Scale of curve field",
+				"Moved resolution option from BezierCurve to CurvyText component"
+            ]
+        }, 
+        {
+            "version": "1.0.2",
+            "changes": 
+            [
+                "Updated to Devion Games website.",
+                "Changed asset path from Unitycoding/Package to Devion Games/Package",
+                "Updated Documentation"
+            ]
+        }
+    ]
+}
