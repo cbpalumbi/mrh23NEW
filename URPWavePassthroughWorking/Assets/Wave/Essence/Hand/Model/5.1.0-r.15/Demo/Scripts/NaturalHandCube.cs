@@ -30,6 +30,15 @@ namespace Wave.Essence.Hand.Model.Demo
 		IPointerClickHandler,
 		ISubmitHandler
 	{
+		[HideInInspector]
+		public MemoryInteractionManager memoryManager;
+		Vector3 originalPosition;
+
+		void Start() {
+			memoryManager = GameObject.Find("MemoryInteractionManager").GetComponent<MemoryInteractionManager>();
+			originalPosition = gameObject.transform.position;
+		}
+
 		const string LOG_TAG = "Wave.Essence.Hand.Model.Demo.NaturalHandCube";
 		private void DEBUG(string msg)
 		{
@@ -66,8 +75,9 @@ namespace Wave.Essence.Hand.Model.Demo
 
 		public void OnPointerDown(PointerEventData eventData)
 		{
-			DEBUG("OnPointerDown()");
-			ChangeColor();
+			//DEBUG("OnPointerDown()");
+			//ChangeColor();
+			
 		}
 
 		public void OnPointerUp(PointerEventData eventData)
@@ -77,59 +87,67 @@ namespace Wave.Essence.Hand.Model.Demo
 
 		public void OnBeginDrag(PointerEventData eventData)
 		{
-			m_Position = transform.position;
+			// m_Position = transform.position;
 
-			DEBUG("OnBeginDrag() position: " + m_Position);
+			// DEBUG("OnBeginDrag() position: " + m_Position);
 
-			StartCoroutine("TrackPointer");
+			// StartCoroutine("TrackPointer");
 		}
 
 		public void OnDrag(PointerEventData eventData)
 		{
-			Camera _cam = eventData.enterEventCamera;
-			if (_cam != null)
-			{
-				m_Position = _cam.ScreenToWorldPoint(new Vector3(eventData.position.x, eventData.position.y, fDistanceInMeter));
-				DEBUG("OnDrag() position: " + m_Position);
-			}
+			// Camera _cam = eventData.enterEventCamera;
+			// if (_cam != null)
+			// {
+			// 	m_Position = _cam.ScreenToWorldPoint(new Vector3(eventData.position.x, eventData.position.y, fDistanceInMeter));
+			// 	DEBUG("OnDrag() position: " + m_Position);
+			// }
 		}
 
 		public void OnEndDrag(PointerEventData eventData)
 		{
-			DEBUG("OnEndDrag() position: " + m_Position);
+			// DEBUG("OnEndDrag() position: " + m_Position);
 
-			StopCoroutine("TrackPointer");
+			// StopCoroutine("TrackPointer");
 		}
 
 		public void OnDrop(PointerEventData eventData)
 		{
-			m_Position = eventData.enterEventCamera.ScreenToWorldPoint(new Vector3(eventData.position.x, eventData.position.y, fDistanceInMeter));
-			DEBUG("OnDrop() position: " + m_Position);
+			// m_Position = eventData.enterEventCamera.ScreenToWorldPoint(new Vector3(eventData.position.x, eventData.position.y, fDistanceInMeter));
+			// DEBUG("OnDrop() position: " + m_Position);
 		}
 
 		public void OnHover(RaycastEventData eventData)
 		{
-			//DEBUG("OnHover() from " + eventData.Actor);
-			Rotate();
+			
+			if (memoryManager.selectedMemory == null) {
+				memoryManager.selectedMemory = this.gameObject;
+				originalPosition = gameObject.transform.position;
+			} 
+
+
+			
 		}
 
-		private void Rotate()
-		{
-			transform.Rotate(12 * (10 * Time.deltaTime), 0, 0);
-			transform.Rotate(0, 12 * (10 * Time.deltaTime), 0);
-		}
+		
 
 		private Color[] cubeColors = { Color.black, Color.blue, Color.cyan, Color.gray, Color.green, Color.red, Color.white };
 		private uint cubeColorIndex = 0;
 		public void OnPointerClick(PointerEventData eventData)
 		{
-			if (eventData.enterEventCamera != null)
-			{
-				m_Position = eventData.enterEventCamera.ScreenToWorldPoint(new Vector3(eventData.position.x, eventData.position.y, fDistanceInMeter));
-				DEBUG("OnPointerClick() position: " + m_Position);
-			}
+			if (memoryManager.selectedMemory == this.gameObject) {
+				memoryManager.selectedMemory = null;
+				gameObject.transform.position = originalPosition;
+				GetComponent<MeshRenderer>().material = memoryManager.blue;
+			} 
 
-			StopCoroutine("TrackPointer");
+			// if (eventData.enterEventCamera != null)
+			// {
+			// 	m_Position = eventData.enterEventCamera.ScreenToWorldPoint(new Vector3(eventData.position.x, eventData.position.y, fDistanceInMeter));
+			// 	DEBUG("OnPointerClick() position: " + m_Position);
+			// }
+
+			// StopCoroutine("TrackPointer");
 			//TeleportRandomly();
 		}
 
@@ -141,7 +159,7 @@ namespace Wave.Essence.Hand.Model.Demo
 
 		void ChangeColor()
 		{
-			GetComponent<Renderer>().material.color = cubeColors[(cubeColorIndex++ % cubeColors.Length)];
+			//GetComponent<Renderer>().material.color = cubeColors[(cubeColorIndex++ % cubeColors.Length)];
 		}
 		#endregion
 
@@ -169,7 +187,11 @@ namespace Wave.Essence.Hand.Model.Demo
 
 		public void OnTrigger()
 		{
-			TeleportRandomly();
+			//TeleportRandomly();
+			// if (memoryManager.selectedMemory == this.gameObject) {
+			// 	memoryManager.selectedMemory = null;
+			// 	gameObject.transform.position = originalPosition;
+			// } 
 		}
 	}
 }
